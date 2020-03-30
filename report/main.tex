@@ -1,0 +1,89 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\topmargin=0cm
+\topskip=0cm
+\textheight=25cm
+\headheight=0cm
+\headsep=0cm
+\oddsidemargin=0cm
+\evensidemargin=0cm
+\textwidth=16cm
+\parindent=0cm
+\parskip=12pt
+
+\renewcommand{\baselinestretch}{1.2}
+
+\title{Aspect-based sentiment analysis}
+\author{Miha Bizjak \\ Anže Gregorc \\ Rok Grmek}
+\date{\today}
+
+
+
+\begin{document}
+
+
+
+\maketitle
+
+
+
+\section{Introduction}
+
+Online news, forums and social media are a place for everyone to read and write articles and posts across various domains. 
+People can also leave comments and giving their opinion and express their feelings about the topics. 
+That leads  to a huge amount of text content. 
+That is probably why natural language analysis is currently a hot topic around the world.
+We wanted to extract useful information out of large amount of text data. Since we have no time for reading all the words that are written nowadays, we hope to build a good computer program to do that for us.
+In this project we chose to do aspect-based sentiment analysis. 
+Our task is to get the subjective information from text material that refer to a entity with the use of natural language processing and other methods. 
+An entity is considered as a person, organization or a location and can be represented multiple times in one document or a sentence and there could be more entities in one document.
+
+
+
+\section{Related work}
+
+The main challenge of entity-based analysis is how to find words that describe the entity and identify if contributes to positive or negative sentiment to a given entity. 
+A lot of related work tried to predict sentiment of the whole document. 
+But in many cases a text can describe polarity of a more entities. 
+That is why we suggest that sentiment analysis is done on entity level.
+Since our task is more specific we focused more on methods that identify entities.
+
+In the paper~\cite{ding2018entity} they developed an entity-based sentiment analysis SentiSW and tested it on issue comments from GitHub.
+SentiSW can classify issue comments into \emph{<sentiment, entity>} tuples. 
+They evaluate the entity recognition by manually annotation and it achieves 75\% accuracy. 
+The main pipeline of this tool is preprocess (words removal, words replacing, stem), feature vectorize (TF-IDF, Doc2vec), classifier (random forest, bagging and other supervised machine learning methods) and entity recognition (rule-based method). 
+
+The use of word embeddings provide powerful methods for semantic understanding without the need of creating large amounts of annotated test data. 
+The paper~\cite{sweeney2017multi} enhanced the word embeddings approach with the  deployment of a sentiment lexicon-based technique to appoint a total score that indicates the polarity of opinion in relation to a particular entity. 
+They associate a given entity with the words describing it and extracting the associated sentiment to try to infer if the text is positive or negative in relation to the entity.
+
+
+
+\section{Initial ideas and work plan}
+
+\begin{itemize}
+\item Which measures are useful for comparing our results to the ground truth? We have already implemented average class deviation measure, but a simple majority class classifier will probably easily outperform our methods in terms of average deviation (because of the class distribution).
+\item Any other related work?
+\item Implement some methods from related work (if they are directly applicable).
+\item Derive and implement our own methods.
+\item Are deep learning approaches applicable on a data set like this one?
+\end{itemize}
+
+
+
+\section{References}
+
+\renewcommand\refname{}
+\vspace{-50px}
+\bibliographystyle{elsarticle-num}
+\bibliography{./bibliography}
+
+
+
+\end{document}
