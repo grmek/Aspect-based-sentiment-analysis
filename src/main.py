@@ -3,7 +3,7 @@ import random
 
 
 def main():
-    data_set_dir = 'SentiCoref_1.0'
+    data_set_dir = '../data/SentiCoref_1.0'
 
     total_deviation = 0
     num_comparisons = 0
