@@ -108,7 +108,7 @@ class LexiconFeaturesModel:
             X = get_single_entity_in_sentence(X, dataset[idx], sentiment_dataset[idx], entity_to_idx)
             all_positive = sum([1 for s in sentiment_dataset[idx] if s[1] == 1])
             X[start_index:end_index, 6] = all_positive
-            all_negative = sum([1 for s in sentiment_dataset[idx] if s[1] == 1])
+            all_negative = sum([1 for s in sentiment_dataset[idx] if s[1] == -1])
             X[start_index:end_index, 7] = all_negative
             all_entities = len(entities)
             X[start_index:end_index, 8] = all_entities
