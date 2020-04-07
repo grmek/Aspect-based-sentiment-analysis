@@ -1,3 +1,5 @@
+from collections import defaultdict
+import nltk
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -86,6 +88,8 @@ class LexiconFeaturesModel:
         sentiment_dataset = create_sentiment_array(dataset, self.lexicon)
         num_samples = sum([len(dictionary) for dictionary in y_dict])
 
+        sentence_detector = nltk.data.load("tokenizers/punkt/slovene.pickle")
+
         X = np.zeros((num_samples, self.num_features))
         y = None
         if is_train:
@@ -106,6 +110,22 @@ class LexiconFeaturesModel:
 
             if is_train:
                 y[start_index:end_index] = [dictionary[entity] for entity in entities]
+
+            sentence_index_array = detect_sentences(entry, sentence_detector)
+            sentence_count = sentence_index_array[-1] + 1
+            sentence_positive_sentiments = [0] * sentence_count
+            sentence_negative_sentiments = [0] * sentence_count
+            for i, sentiment in sentiment_dataset[idx]:
+                if sentiment > 0:
+                    sentence_positive_sentiments[int(sentence_index_array[i])] += 1
+                elif sentiment < 0:
+                    sentence_negative_sentiments[int(sentence_index_array[i])] += 1
+
+            sentence_entities = defaultdict(list)
+            for i, (token, entity_list) in enumerate(entry):
+                if len(entities) > 0:
+                    sentence_entities[int(sentence_index_array[i])] += entity_list
+            sentence_unique_entity_counts = {k : len(set(v)) for k, v in sentence_entities.items()}
 
             X = get_sentiment_around(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx)
             X = get_closest_entities(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx)
@@ -326,3 +346,20 @@ def create_sentiment_array(data_set, lexicon):
                 sentiment_arr.append((idx, sentiment))
         sentiment_dataset.append(sentiment_arr)
     return sentiment_dataset
+
+
+def detect_sentences(entry, tokenizer):
+    """
+        Detect which tokens in a dataset entry belong to the same sentences.
+    :param entry: single dataset entry
+    :param tokenizer: nltk Punkt sentence tokenizer
+    :return: numpy array containing the index of the sentence each token belongs to
+    """
+    tokens = [x[0] for x in entry]
+    sentences = tokenizer.sentences_from_tokens(tokens)
+    sentence_index_array = np.zeros(len(tokens), dtype=int)
+    idx = 0
+    for i, sentence in enumerate(sentences):
+        sentence_index_array[idx:idx+len(sentence)] = i
+        idx += len(sentence)
+    return sentence_index_array
