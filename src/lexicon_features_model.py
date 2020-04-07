@@ -51,6 +51,10 @@ class LexiconFeaturesModel:
         # save best model
         self.model = self.rf_gs.best_estimator_
         print('[LexiconFeatures] Best parametres:', self.rf_gs.best_params_)
+        print('[LexiconFeatures] Feature importances:')
+        feature_importances = sorted(zip(FEATURE_NAMES, self.model.feature_importances_), key=lambda x: -x[1])
+        for feature, value in feature_importances:
+            print(f'    {round(value, 2)} {feature}')
 
     def predict(self, dataset, sentiment_dicts):
         """
