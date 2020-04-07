@@ -15,7 +15,8 @@ FEATURE_NAMES = [
     'all positive',
     'all negative',
     'all entities',
-    'all entity occurrences'
+    'all entity occurrences',
+    'positive - negative in sentence'
 ]
 
 
@@ -113,23 +114,38 @@ class LexiconFeaturesModel:
 
             sentence_index_array = detect_sentences(entry, sentence_detector)
             sentence_count = sentence_index_array[-1] + 1
-            sentence_positive_sentiments = [0] * sentence_count
-            sentence_negative_sentiments = [0] * sentence_count
+            sentence_positive_sentiment_counts = [0] * sentence_count
+            sentence_negative_sentiment_counts = [0] * sentence_count
             for i, sentiment in sentiment_dataset[idx]:
                 if sentiment > 0:
-                    sentence_positive_sentiments[int(sentence_index_array[i])] += 1
+                    sentence_positive_sentiment_counts[int(sentence_index_array[i])] += 1
                 elif sentiment < 0:
-                    sentence_negative_sentiments[int(sentence_index_array[i])] += 1
+                    sentence_negative_sentiment_counts[int(sentence_index_array[i])] += 1
 
             sentence_entities = defaultdict(list)
             for i, (token, entity_list) in enumerate(entry):
-                if len(entities) > 0:
-                    sentence_entities[int(sentence_index_array[i])] += entity_list
-            sentence_unique_entity_counts = {k : len(set(v)) for k, v in sentence_entities.items()}
+                if len(entity_list) > 0:
+                    sentence_entities[int(sentence_index_array[i])] += [entity_to_idx[ent]
+                                                                        for ent in entity_list
+                                                                        if ent in entities]
+            sentence_unique_entity_counts = defaultdict(int, {k : len(set(v)) for k, v in sentence_entities.items()})
 
             X = get_sentiment_around(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx)
             X = get_closest_entities(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx)
-            X = get_single_entity_in_sentence(X, dataset[idx], sentiment_dataset[idx], entity_to_idx)
+            # X = get_single_entity_in_sentence(X, dataset[idx], sentiment_dataset[idx], entity_to_idx)
+
+            # 4: count of positive sentiment words in sentence, divided by entity count
+            # 5: count of negative sentiment words in sentence, divided by entity count
+            # 10: positive - negative in sentence, divided by entity count
+            for i, pos_sent_count in enumerate(sentence_positive_sentiment_counts):
+                if sentence_unique_entity_counts[i] > 0:
+                    X[sentence_entities[i], 4] = pos_sent_count / sentence_unique_entity_counts[i]
+                    X[sentence_entities[i], 9] = pos_sent_count
+            for i, neg_sent_count in enumerate(sentence_negative_sentiment_counts):
+                if sentence_unique_entity_counts[i] > 0:
+                    X[sentence_entities[i], 5] = neg_sent_count / sentence_unique_entity_counts[i]
+            X[start_index:end_index, 10] = X[start_index:end_index, 4] - X[start_index:end_index, 5]
+
             all_positive = sum([1 for s in sentiment_dataset[idx] if s[1] == 1])
             X[start_index:end_index, 6] = all_positive
             all_negative = sum([1 for s in sentiment_dataset[idx] if s[1] == -1])
