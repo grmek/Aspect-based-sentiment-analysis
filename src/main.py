@@ -205,9 +205,9 @@ def calculate_measures(sentiment_dicts_true, sentiment_dicts_pred, print_model_n
     num_samples = sum([len(dictionary) for dictionary in sentiment_dicts_true])
     y_true = np.zeros(num_samples)
     y_pred = np.zeros(num_samples)
-    for idx, (dict_true, dict_pred) in enumerate(zip(sentiment_dicts_true, sentiment_dicts_pred)):
+    i = 0
+    for dict_true, dict_pred in zip(sentiment_dicts_true, sentiment_dicts_pred):
         entities = list(dict_true.keys())
-        i = idx
         for entity in entities:
             y_true[i] = dict_true[entity]
             y_pred[i] = dict_pred[entity]
