@@ -1,9 +1,11 @@
+from general_model import GeneralModel
 from collections import defaultdict
 import nltk
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
+
 
 FEATURE_NAMES = [
     '+-5 positive',
@@ -20,7 +22,7 @@ FEATURE_NAMES = [
 ]
 
 
-class LexiconFeaturesModel:
+class LexiconFeaturesModel(GeneralModel):
     def __init__(self, lexicon):
         self.num_features = len(FEATURE_NAMES)
         self.lexicon = lexicon
@@ -44,34 +46,34 @@ class LexiconFeaturesModel:
         :param dataset: list of data
         :param sentiment_dicts: list of ground truth dictionaries
         """
-        print('[LexiconFeatures] Fitting started')
+        self.print('Fitting started')
         X_train, y_train, back_to_dicts = self.get_features(dataset, sentiment_dicts, is_train=True)
-        print('[LexiconFeatures] Features are created, now searching for best model parameters')
+        self.print('Features are created, now searching for best model parameters')
 
         # fit model to training data
         self.rf_gs.fit(X_train, y_train)
 
         # save best model
         self.model = self.rf_gs.best_estimator_
-        print('[LexiconFeatures] Best parametres:', self.rf_gs.best_params_)
-        print('[LexiconFeatures] Feature importances:')
+        self.print('Best parametres:', self.rf_gs.best_params_)
+        self.print('Feature importances:')
         feature_importances = sorted(zip(FEATURE_NAMES, self.model.feature_importances_), key=lambda x: -x[1])
         for feature, value in feature_importances:
-            print(f'    {round(value, 2)} {feature}')
+            self.print(f'    {round(value, 2)} {feature}')
 
     def predict(self, dataset, sentiment_dicts):
         """
             Predict values from dataset
         :param dataset: list of data
         :param sentiment_dicts: list of entity dictionaries
-        :return:
+        :return: predicted sentiments (list of dictionaries)
         """
-        print('[LexiconFeatures] Predicting')
+        self.print('Predicting')
         X_test, _, back_to_dicts = self.get_features(dataset, sentiment_dicts, is_train=False)
-        print('[LexiconFeatures] Features are created')
+        self.print('Features are created')
 
         y_predicted = self.model.predict(X_test)
-        print('[LexiconFeatures] Finished xD')
+        self.print('Finished xD')
         return predicted_to_dict(y_predicted, back_to_dicts)
 
     def get_features(self, dataset, y_dict, is_train=False):
