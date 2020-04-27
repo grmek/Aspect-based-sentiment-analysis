@@ -1,27 +1,37 @@
-\documentclass[a4paper, 12pt]{article}
-\usepackage{lmodern}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\documentclass[11pt,a4paper]{article}
+\usepackage{times,latexsym}
 \usepackage{url}
-\usepackage{amsmath}
-\usepackage{graphicx}
+\usepackage[T1]{fontenc}
 
-\topmargin=0cm
-\topskip=0cm
-\textheight=25cm
-\headheight=0cm
-\headsep=0cm
-\oddsidemargin=0cm
-\evensidemargin=0cm
-\textwidth=16cm
-\parindent=0cm
-\parskip=12pt
+%% Package options:
+%% Short version: "hyperref" and "submission" are the defaults.
+%% More verbose version:
+%% Most compact command to produce a submission version with hyperref enabled
+%%    \usepackage[]{tacl2018v2}
+%% Most compact command to produce a "camera-ready" version
+%%    \usepackage[acceptedWithA]{tacl2018v2}
+%% Most compact command to produce a double-spaced copy-editor's version
+%%    \usepackage[acceptedWithA,copyedit]{tacl2018v2}
+%
+%% If you need to disable hyperref in any of the above settings (see Section
+%% "LaTeX files") in the TACL instructions), add ",nohyperref" in the square
+%% brackets. (The comma is a delimiter in case there are multiple options specified.)
 
-\renewcommand{\baselinestretch}{1.2}
+\usepackage[acceptedWithA]{tacl2018v2}
 
 \title{Aspect-based sentiment analysis}
-\author{Miha Bizjak \\ Anže Gregorc \\ Rok Grmek}
-\date{\today}
+
+% Author information does not appear in the pdf unless the "acceptedWithA" option is given
+% See tacl2018v2.sty for other ways to format author information
+\author{
+    Miha Bizjak, Anže Gregorc, Rok Grmek \\
+    University of Ljubljana \\
+    Faculty for computer and information science \\
+    Večna pot 113, SI-1000 Ljubljana \\
+    mb---@student.uni-lj.si, ag---@student.uni-lj.si, rg6954@student.uni-lj.si
+}
+
+\date{}
 
 
 
@@ -30,6 +40,12 @@
 
 
 \maketitle
+
+
+
+\begin{abstract}
+    TODO: ...
+\end{abstract}
 
 
 
@@ -79,10 +95,8 @@ They associate a given entity with the words describing it and extracting the as
 
 \section{References}
 
-\renewcommand\refname{}
-\vspace{-50px}
-\bibliographystyle{elsarticle-num}
-\bibliography{./bibliography}
+\bibliography{bibliography}
+\bibliographystyle{acl_natbib}
 
 
 
