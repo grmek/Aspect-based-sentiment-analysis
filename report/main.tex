@@ -28,7 +28,7 @@
     University of Ljubljana \\
     Faculty for computer and information science \\
     Večna pot 113, SI-1000 Ljubljana \\
-    mb---@student.uni-lj.si, ag---@student.uni-lj.si, rg6954@student.uni-lj.si
+    mb9232@student.uni-lj.si, ag9497@student.uni-lj.si, rg6954@student.uni-lj.si
 }
 
 \date{}
@@ -44,7 +44,7 @@
 
 
 \begin{abstract}
-    TODO: ...
+    TODO
 \end{abstract}
 
 
@@ -59,6 +59,10 @@ We wanted to extract useful information out of large amount of text data. Since 
 In this project we chose to do aspect-based sentiment analysis. 
 Our task is to get the subjective information from text material that refer to a entity with the use of natural language processing and other methods. 
 An entity is considered as a person, organization or a location and can be represented multiple times in one document or a sentence and there could be more entities in one document.
+
+For the given task, we decided to test multiple approaches and develop different models for predicting the sentiment for each entity.
+We will first define some really simple models as a starting point, and then we will try to derive some more complex models.
+All of them will be targeting the Slovene language, and we will evaluate each of the models on the Slovene corpus for aspect-based sentiment analysis - SentiCoref 1.0~\cite{zitnik2019slovene}.
 
 
 
@@ -81,15 +85,71 @@ They associate a given entity with the words describing it and extracting the as
 
 
 
-\section{Initial ideas and work plan}
+\section{Methods}
 
+\subsection{Dataset}
+
+TODO
+
+\subsection{Models}
+
+TODO
+
+\subsubsection{Random model}
+
+TODO
 \begin{itemize}
-\item Which measures are useful for comparing our results to the ground truth? We have already implemented average class deviation measure, but a simple majority class classifier will probably easily outperform our methods in terms of average deviation (because of the class distribution).
-\item Any other related work?
-\item Implement some methods from related work (if they are directly applicable).
-\item Derive and implement our own methods.
-\item Are deep learning approaches applicable on a data set like this one?
+    \item Randomly assigns sentiment from 1 to 5 to each entity.
+    \item No real value.
+    \item Developed along with the evaluation toolbox only for testing.
+    \item Also serves as a model that should be evaluated with the lowest possible score.
 \end{itemize}
+
+\subsubsection{Majority model}
+
+TODO
+\begin{itemize}
+    \item Assigns the neutral sentiment (3) to all entities.
+    \item Should produce a decent score because of the distribution of the sentiment classes.
+    \item Will serve for a reference score - complex models should not be performing worse than this simple majority model.
+\end{itemize}
+
+\subsubsection{Lexicon Features model}
+
+TODO
+\begin{itemize}
+    \item ...
+\end{itemize}
+
+\subsubsection{Further ideas}
+
+TODO (note: following ideas will be used for implementing a few more models)
+\begin{itemize}
+    \item Current features in the Lex. Feat. model depend mainly on the positive/negative words in the neighborhood of the entity. Instead of looking at the neighborhood, we could use a dependency parser and observe sentiment of the most related words (not necessary in the neighbourhood).
+    \item Instead of constructing handcrafted features, we could use BERT model for feature extraction. Those features depend on the context of each word, so we could simply use feature representation of each entity word occurrence and its sentiment as a learning sample for some classifier. With the trained classifier, we could predict sentiment for each occurrence of the entity and calculate the average sentiment for the entity.
+    \item Test the effect of using different classifiers (re-implement a single model with different classifiers)
+    \item Combine multiple feat. representations into a single model (normalize and concatenate feature vectors from different models and let the classifier use/learn most important features from all models).
+\end{itemize}
+
+\subsection{Evaluation}
+
+TODO
+\begin{itemize}
+    \item Describe the train/test split.
+    \item Implemented measures: Accuracy, Precision, Recall, F1 score.
+\end{itemize}
+
+
+
+\section{Results}
+
+TODO
+
+
+
+\section{Discussion}
+
+TODO
 
 
 
