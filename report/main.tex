@@ -51,13 +51,13 @@
 
 \section{Introduction}
 
-Online news, forums and social media are a place for everyone to read and write articles and posts across various domains. 
-People can also leave comments and giving their opinion and express their feelings about the topics. 
-That leads  to a huge amount of text content. 
+Online news, forums and social media are a place for everyone to read and write articles and posts across various domains.
+People can also leave comments and giving their opinion and express their feelings about the topics.
+That leads  to a huge amount of text content.
 That is probably why natural language analysis is currently a hot topic around the world.
-We wanted to extract useful information out of large amount of text data. Since we have no time for reading all the words that are written nowadays, we hope to build a good computer program to do that for us.
-In this project we chose to do aspect-based sentiment analysis. 
-Our task is to get the subjective information from text material that refer to a entity with the use of natural language processing and other methods. 
+We wanted to extract useful information out of large amount of text data.Since we have no time for reading all the words that are written nowadays, we hope to build a good computer program to do that for us.
+In this project we chose to do aspect-based sentiment analysis.
+Our task is to get the subjective information from text material that refer to a entity with the use of natural language processing and other methods.
 An entity is considered as a person, organization or a location and can be represented multiple times in one document or a sentence and there could be more entities in one document.
 
 For the given task, we decided to test multiple approaches and develop different models for predicting the sentiment for each entity.
@@ -68,20 +68,29 @@ All of them will be targeting the Slovene language, and we will evaluate each of
 
 \section{Related work}
 
-The main challenge of entity-based analysis is how to find words that describe the entity and identify if contributes to positive or negative sentiment to a given entity. 
-A lot of related work tried to predict sentiment of the whole document. 
-But in many cases a text can describe polarity of a more entities. 
+The main challenge of entity-based analysis is how to find words that describe the entity and identify if contributes to positive or negative sentiment to a given entity.
+A lot of related work tried to predict sentiment of the whole document.
+But in many cases, a text can describe the polarity of more entities.
 That is why we suggest that sentiment analysis is done on entity level.
 Since our task is more specific we focused more on methods that identify entities.
 
 In the paper~\cite{ding2018entity} they developed an entity-based sentiment analysis SentiSW and tested it on issue comments from GitHub.
-SentiSW can classify issue comments into \emph{<sentiment, entity>} tuples. 
-They evaluate the entity recognition by manually annotation and it achieves 75\% accuracy. 
-The main pipeline of this tool is preprocess (words removal, words replacing, stem), feature vectorize (TF-IDF, Doc2vec), classifier (random forest, bagging and other supervised machine learning methods) and entity recognition (rule-based method). 
+SentiSW can classify issue comments into \emph{<sentiment, entity>} tuples.
+They evaluate the entity recognition by manually annotation and it achieves 75\% accuracy.
+The main pipeline of this tool is preprocess (words removal, words replacing, stem), feature vectorize (TF-IDF, Doc2vec), classifier (random forest, bagging and other supervised machine learning methods) and entity recognition (rule-based method).
 
-The use of word embeddings provide powerful methods for semantic understanding without the need of creating large amounts of annotated test data. 
-The paper~\cite{sweeney2017multi} enhanced the word embeddings approach with the  deployment of a sentiment lexicon-based technique to appoint a total score that indicates the polarity of opinion in relation to a particular entity. 
+The use of word embeddings provide powerful methods for semantic understanding without the need of creating large amounts of annotated test data.
+The paper~\cite{sweeney2017multi} enhanced the word embeddings approach with the  deployment of a sentiment lexicon-based technique to appoint a total score that indicates the polarity of opinion in relation to a particular entity.
 They associate a given entity with the words describing it and extracting the associated sentiment to try to infer if the text is positive or negative in relation to the entity.
+
+As stated in the paper~\cite{song2019attentional}, a lot of the existing approaches are modelling context and target words with RNNs and attention.
+This paper addresses the issues with RNNs and proposes an Attentional Encoder Network for modeling the semantic interactions between target and context words.
+The paper also addresses the label unreliability issue.
+The proposed model with the use of pre-trained BERT embedding achieved state-of-the-art results while still being a relatively lightweight model.
+
+Another successful approach that utilizes the BERT model is described in the paper~\cite{sun2019utilizing}.
+In this paper, the authors tried a few methods, where they were generating an auxiliary sentence for each prediction.
+They basically converted the aspect-based sentiment analysis problem into a sentence-pair classification task.
 
 
 
@@ -89,7 +98,21 @@ They associate a given entity with the words describing it and extracting the as
 
 \subsection{Dataset}
 
-TODO
+The SentiCoref 1.0 dataset contains 837 documents with annotations of named entities (31,419 entities in total) and sentiment annotations for each entity. For each entity, a sentiment value from 1 to 5 is assigned. The distribution of sentiment labels in the dataset is shown in Table~\ref{tab:sentiment_distribution}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+Sentiment label   & Entity count \\ \hline
+1 - Very negative & 30           \\
+2 - Negative      & 1801         \\
+3 - Neutral       & 10869        \\
+4 - Positive      & 1705         \\
+5 - Very positive & 24          
+\end{tabular}
+\caption{Entity sentiment distribution in the SentiCoref 1.0 dataset.}
+\label{tab:sentiment_distribution}
+\end{table}
 
 \subsection{Models}
 
@@ -118,7 +141,21 @@ TODO
 
 TODO
 \begin{itemize}
-    \item ...
+    \item The model uses a random forest classifier with the following features:
+    \begin{itemize}
+        \item number of positive words up to 5 words before/after each entity occurrence,
+        \item number of negative words up to 5 words before/after each entity occurrence,
+        \item number of positive words for which the current entity is the closest,
+        \item number of negative words for which the current entity is the closest,
+        \item number of positive words in sentence,
+        \item number of negative words in sentence,
+        \item number of positive words in the text,
+        \item number of negative words in the text,
+        \item number of different entities in the text,
+        \item number of occurrences of the entity.
+    \end{itemize}
+    \item The optimal parameters for the model are chosen using grid-search with 5-fold cross-validation.
+    \item Sentence splitting is done using the pretrained Punkt sentence tokenizer~\cite{kiss2006unsupervised} for Slovene provided with the \texttt{nltk} Python package~\cite{bird2009natural}.
 \end{itemize}
 
 \subsubsection{Further ideas}
@@ -135,7 +172,7 @@ TODO (note: following ideas will be used for implementing a few more models)
 
 TODO
 \begin{itemize}
-    \item Describe the train/test split.
+    \item 2/3 train, 1/3 test split
     \item Implemented measures: Accuracy, Precision, Recall, F1 score.
 \end{itemize}
 
@@ -145,6 +182,19 @@ TODO
 
 TODO
 
+Table~\ref{tab:results} lists the results of our models on the test dataset.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+Model            & Accuracy & F1-score \\ \hline
+Random model     & 0.203    & 0.128    \\
+Majority model   & 0.751    & 0.172    \\
+Lexicon Features & 0.756    & 0.197   
+\end{tabular}
+\caption{Model results on the test dataset.}
+\label{tab:results}
+\end{table}
 
 
 \section{Discussion}
