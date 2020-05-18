@@ -3,6 +3,7 @@ from evaluation import Evaluation
 from random_model import RandomModel
 from majority_model import MajorityModel
 from lexicon_features_model import LexiconFeaturesModel
+from bert_model import BertModel
 
 
 DATA_DIR = '../data/'
@@ -21,6 +22,16 @@ def main():
     evaluation.evaluate(RandomModel())
     evaluation.evaluate(MajorityModel())
     evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict))
+    evaluation.evaluate(BertModel(n_words_left_right=1, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=2, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=3, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=4, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=5, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
 
 
 def get_sentiment_lexicon(lexicon_dir):
