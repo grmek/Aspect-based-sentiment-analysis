@@ -3,42 +3,86 @@ from collections import defaultdict
 import nltk
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import Normalizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 
 
-FEATURE_NAMES = [
-    '+-5 positive',
-    '+-5 negative',
-    'closest positive',
-    'closest negative',
-    'positive in sentence',
-    'negative in sentence',
-    'all positive',
-    'all negative',
-    'all entities',
-    'all entity occurrences',
-    'positive - negative in sentence'
-]
+def list_to_str(my_list, space=False):
+    result = '['
+    first = True
+    for element in my_list:
+        if first:
+            first = False
+        else:
+            if space:
+                result += ' '
+            result += ','
+        result += str(element)
+    result += ']'
+    return result
 
 
 class LexiconFeaturesModel(GeneralModel):
-    def __init__(self, lexicon):
-        self.num_features = len(FEATURE_NAMES)
+    def __init__(self, lexicon, positive_around_num=None, negative_around_num=None, normalize_data=False, rf_params=None):
+
+        if positive_around_num is None:
+            positive_around_num = [5]  # default positive environment ranges
+        if negative_around_num is None:
+            negative_around_num = [5]  # default negative environment ranges
+        self.positive_around_num = positive_around_num
+        self.negative_around_num = negative_around_num
+        if rf_params is None:
+            rf_params = {}          # default RF params -> then we use Grid Search
+
+        self.feature_names = []
+        for pos in positive_around_num:
+            self.feature_names.append(f'+-{pos} positive')
+        for neg in negative_around_num:
+            self.feature_names.append(f'+-{neg} positive')
+
+        self.feature_names = self.feature_names + [
+            'closest positive',
+            'closest negative',
+            'positive in sentence',
+            'negative in sentence',
+            'all positive',
+            'all negative',
+            'all entities',
+            'all entity occurrences',
+            'positive - negative in sentence'
+        ]
+        self.num_features = len(self.feature_names)
+
+        param_str = '_' + list_to_str(self.positive_around_num) + \
+                    '_' + list_to_str(self.negative_around_num)
+        if normalize_data:
+            param_str += '_T'
+        else:
+            param_str += '_F'
+        self.name = self.name = self.__class__.__name__ + '_' + param_str
+
         self.lexicon = lexicon
 
-        # initialize a model
-        # create a new random forest classifier
-        rf = RandomForestClassifier()
-        # create a dictionary of all values we want to test for n_estimators
-        nf = self.num_features
-        params_rf = {'n_estimators': [5, 25, 50, 75, 100, 200],
-                     'criterion': ['gini', 'entropy'],
-                     'max_depth': [3, int(nf / 4), int(nf / 2), int(nf * 3 / 4), nf],
-                     }
-        # use grid search to test all values for n_estimators
-        self.rf_gs = GridSearchCV(rf, params_rf, cv=5, iid=False)
+        self.normalizer = None
+        if normalize_data:
+            self.normalizer = Normalizer()
+        self.rf_gs = None
         self.model = None
+        # initialize a model
+        if len(rf_params) > 0:
+            # create a new random forest classifier
+            rf = RandomForestClassifier()
+            # create a dictionary of all values we want to test for n_estimators
+            nf = self.num_features
+            params_rf = {'n_estimators': [5, 25, 50, 75, 100, 200],
+                         'criterion': ['gini', 'entropy'],
+                         'max_depth': [3, int(nf / 4), int(nf / 2), int(nf * 3 / 4), nf],
+                         }
+            # use grid search to test all values for n_estimators
+            self.rf_gs = GridSearchCV(rf, params_rf, cv=5, iid=False)
+        else:
+            self.model = RandomForestClassifier(**rf_params)
 
     def fit(self, dataset, sentiment_dicts):
         """
@@ -46,18 +90,29 @@ class LexiconFeaturesModel(GeneralModel):
         :param dataset: list of data
         :param sentiment_dicts: list of ground truth dictionaries
         """
-        self.print('Fitting started')
+        self.print('Fitting started, fist create features')
         X_train, y_train, back_to_dicts = self.get_features(dataset, sentiment_dicts, is_train=True)
-        self.print('Features are created, now searching for best model parameters')
 
-        # fit model to training data
-        self.rf_gs.fit(X_train, y_train)
+        if self.normalizer is not None:
+            self.print('Normalizing')
+            self.normalizer.fit(X_train)
 
-        # save best model
-        self.model = self.rf_gs.best_estimator_
-        self.print('Best parametres:', self.rf_gs.best_params_)
+        assert (self.rf_gs is None) != (self.model is None)
+        if self.model is None:
+            self.print('Searching for best model parameters')
+
+            # fit model to training data
+            self.rf_gs.fit(X_train, y_train)
+
+            # save best model
+            self.model = self.rf_gs.best_estimator_
+            self.print('Best parametres:', self.rf_gs.best_params_)
+        else:
+            self.print('Lets fit RF model')
+            self.model.fit(X_train, y_train)
+
         self.print('Feature importances:')
-        feature_importances = sorted(zip(FEATURE_NAMES, self.model.feature_importances_), key=lambda x: -x[1])
+        feature_importances = sorted(zip(self.feature_names, self.model.feature_importances_), key=lambda x: -x[1])
         for feature, value in feature_importances:
             self.print(f'    {round(value, 2)} {feature}')
 
@@ -68,12 +123,14 @@ class LexiconFeaturesModel(GeneralModel):
         :param sentiment_dicts: list of entity dictionaries
         :return: predicted sentiments (list of dictionaries)
         """
-        self.print('Predicting')
+        self.print('Predicting results ...')
         X_test, _, back_to_dicts = self.get_features(dataset, sentiment_dicts, is_train=False)
-        self.print('Features are created')
+        # self.print('Features are created')
+
+        if self.normalizer is not None:
+            self.normalizer.fit(X_test)
 
         y_predicted = self.model.predict(X_test)
-        self.print('Finished xD')
         return predicted_to_dict(y_predicted, back_to_dicts)
 
     def get_features(self, dataset, y_dict, is_train=False):
@@ -132,33 +189,52 @@ class LexiconFeaturesModel(GeneralModel):
                                                                         if ent in entities]
             sentence_unique_entity_counts = defaultdict(int, {k : len(set(v)) for k, v in sentence_entities.items()})
 
-            X = get_sentiment_around(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx)
-            X = get_closest_entities(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx)
+            column_id = 0
+            for pos_around_num in self.positive_around_num:
+                X = get_sentiment_around(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx,
+                                         pos_column_in_x=column_id, neg_column_in_x=None, around_num=pos_around_num)
+                column_id += 1
+            for neg_around_num in self.negative_around_num:
+                X = get_sentiment_around(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx,
+                                         pos_column_in_x=None, neg_column_in_x=column_id, around_num=neg_around_num)
+                column_id += 1
+
+            X = get_closest_entities(X, text_entities[idx], sentiment_dataset[idx], entity_to_idx,
+                                     pos_column_in_x=column_id, neg_column_in_x=column_id+1)
+            column_id += 2
             # X = get_single_entity_in_sentence(X, dataset[idx], sentiment_dataset[idx], entity_to_idx)
 
             # 4: count of positive sentiment words in sentence, divided by entity count
             # 5: count of negative sentiment words in sentence, divided by entity count
-            # 10: positive - negative in sentence, divided by entity count
+
             for i, pos_sent_count in enumerate(sentence_positive_sentiment_counts):
                 if sentence_unique_entity_counts[i] > 0:
-                    X[sentence_entities[i], 4] = pos_sent_count / sentence_unique_entity_counts[i]
-                    X[sentence_entities[i], 9] = pos_sent_count
+                    X[sentence_entities[i], column_id] = pos_sent_count / sentence_unique_entity_counts[i]
+            pos_sentence_id = column_id
+            column_id += 1
             for i, neg_sent_count in enumerate(sentence_negative_sentiment_counts):
                 if sentence_unique_entity_counts[i] > 0:
-                    X[sentence_entities[i], 5] = neg_sent_count / sentence_unique_entity_counts[i]
-            X[start_index:end_index, 10] = X[start_index:end_index, 4] - X[start_index:end_index, 5]
+                    X[sentence_entities[i], column_id] = neg_sent_count / sentence_unique_entity_counts[i]
+            neg_sentence_id = column_id
+            column_id += 1
 
             all_positive = sum([1 for s in sentiment_dataset[idx] if s[1] == 1])
-            X[start_index:end_index, 6] = all_positive
+            X[start_index:end_index, column_id] = all_positive
+            column_id += 1
             all_negative = sum([1 for s in sentiment_dataset[idx] if s[1] == -1])
-            X[start_index:end_index, 7] = all_negative
+            X[start_index:end_index, column_id] = all_negative
+            column_id += 1
             all_entities = len(entities)
-            X[start_index:end_index, 8] = all_entities
+            X[start_index:end_index, column_id] = all_entities
+            column_id += 1
             X = get_entity_occurrences(X, text_entities[idx], entity_to_idx)
+            column_id += 1
+            # 10: positive - negative in sentence, divided by entity count
+            X[start_index:end_index, column_id] = X[start_index:end_index, pos_sentence_id] - X[start_index:end_index, neg_sentence_id]
 
             start_index = end_index
 
-        return pd.DataFrame(X, columns=FEATURE_NAMES), y, back_to_dicts
+        return pd.DataFrame(X, columns=self.feature_names), y, back_to_dicts
 
 
 def predicted_to_dict(predicted, back_to_dicts):
@@ -195,6 +271,8 @@ def get_sentiment_around(X, text_ent, sentiment_arr, entity_to_idx, pos_column_i
         column_in_x = pos_column_in_x
         if sentiment == -1:
             column_in_x = neg_column_in_x
+        if column_in_x is None:
+            continue
 
         already_counted_entities = []
         for around in range(max(0, idx - around_num), min(idx + around_num + 1, len(text_ent))):

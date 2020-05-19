@@ -22,6 +22,16 @@ def main():
     evaluation.evaluate(RandomModel())
     evaluation.evaluate(MajorityModel())
     evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict))
+    evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict, positive_around_num=[3, 5, 10],
+                                             negative_around_num=[3, 5, 10], normalize_data=True))
+    evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict, positive_around_num=[3, 5, 10],
+                                             negative_around_num=[3], normalize_data=True))
+    evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict, positive_around_num=[5],
+                                             negative_around_num=[3, 5, 10], normalize_data=True))
+    evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict, positive_around_num=[3, 5, 10, 15],
+                                             negative_around_num=[3, 5, 10], normalize_data=False))
+    evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict, positive_around_num=[3, 15],
+                                             negative_around_num=[10, 15], normalize_data=False))
     evaluation.evaluate(BertModel(n_words_left_right=1, conv_filters=100, dense_units=256,
                                   dropout_rate=0.2, batch_size=128, epochs=5))
     evaluation.evaluate(BertModel(n_words_left_right=2, conv_filters=100, dense_units=256,
