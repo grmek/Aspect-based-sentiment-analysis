@@ -60,7 +60,7 @@ class LexiconFeaturesModel(GeneralModel):
             param_str += '_T'
         else:
             param_str += '_F'
-        self.name = self.name = self.__class__.__name__ + '_' + param_str
+        self.name = self.__class__.__name__ + '_' + param_str
 
         self.lexicon = lexicon
 
@@ -83,6 +83,9 @@ class LexiconFeaturesModel(GeneralModel):
             self.rf_gs = GridSearchCV(rf, params_rf, cv=5, iid=False)
         else:
             self.model = RandomForestClassifier(**rf_params)
+
+    def get_name(self):
+        return self.name
 
     def fit(self, dataset, sentiment_dicts):
         """
