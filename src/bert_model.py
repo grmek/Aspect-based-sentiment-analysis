@@ -15,21 +15,18 @@ class BertModel(GeneralModel):
         self.dropout_rate = dropout_rate
         self.batch_size = batch_size
         self.epochs = epochs
-        # TODO: Undersampling - do we need this?
-        self.under_sampling = False
 
         param_str = '%d_%d_%d_%d_%d_%d' % (n_words_left_right, conv_filters, dense_units,
                                            int(dropout_rate * 100), batch_size, epochs)
-        # TODO: Undersampling - do we need this?
-        if self.under_sampling:
-            param_str += '_'
-
-        self.name = self.name = self.__class__.__name__ + '_' + param_str
+        self.name = self.__class__.__name__ + '_' + param_str
         self.model_path = '../data/models/bert_' + param_str
 
         self.random = np.random.RandomState(123)
 
         self.model = None
+
+    def get_name(self):
+        return self.name
 
     def fit(self, dataset, sentiment_dicts):
         if not os.path.isdir(self.model_path):
@@ -51,18 +48,9 @@ class BertModel(GeneralModel):
                             start_idx = max(data_idx - self.n_words_left_right, 0)
                             end_idx = min(data_idx + self.n_words_left_right + 1, len(file_data))
                             neighbouring_words = ' '.join([d[0] for d in file_data[start_idx:end_idx]])
-                            # TODO: Undersampling - do we need this?
-                            if not self.under_sampling:
-                                X.append(bert_tokenizer.encode_plus(neighbouring_words,
-                                                                    add_special_tokens=True, max_length=128,
-                                                                    pad_to_max_length=True)['input_ids'])
-                                y.append(file_sentiments[entity] - 1)
-                            else:
-                                if file_sentiments[entity] != 3 or self.random.uniform() < 0.3:
-                                    X.append(bert_tokenizer.encode_plus(neighbouring_words,
-                                                                        add_special_tokens=True, max_length=128,
-                                                                        pad_to_max_length=True)['input_ids'])
-                                    y.append(file_sentiments[entity] - 1)
+                            X.append(bert_tokenizer.encode_plus(neighbouring_words, add_special_tokens=True,
+                                                                max_length=128, pad_to_max_length=True)['input_ids'])
+                            y.append(file_sentiments[entity] - 1)
 
             train_data = tf.data.Dataset.from_tensor_slices((tf.constant(X), tf.constant(y))).batch(self.batch_size)
 
