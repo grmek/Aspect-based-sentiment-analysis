@@ -25,8 +25,8 @@ class Evaluation:
     def evaluate(self, model):
         model.fit(self.dataset_train, self.sentiments_train)
         predicted = model.predict(self.dataset_test, self.sentiments_test)
-        print_statistics(self.dataset_test, predicted, model.__class__.__name__ + " predicted")
-        calculate_measures(self.sentiments_test, predicted, print_model_name=model.__class__.__name__)
+        print_statistics(self.dataset_test, predicted, model.get_name() + " predicted")
+        calculate_measures(self.sentiments_test, predicted, print_model_name=model.get_name())
         print()
 
 

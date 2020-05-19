@@ -21,6 +21,9 @@ class GeneralModel(ABC):
         """
         return None
 
+    def get_name(self):
+        return self.__class__.__name__
+
     def print(self, *print_args):
-        print('[%s]' % self.name if hasattr(self, 'name') else self.__class__.__name__, end=' ')
+        print('[%s]' % self.get_name(), end=' ')
         print(*print_args)

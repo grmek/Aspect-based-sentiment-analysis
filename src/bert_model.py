@@ -31,6 +31,9 @@ class BertModel(GeneralModel):
 
         self.model = None
 
+    def get_name(self):
+        return self.name
+
     def fit(self, dataset, sentiment_dicts):
         if not os.path.isdir(self.model_path):
             self.print('Fitting the model ...')
