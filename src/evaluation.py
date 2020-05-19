@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
+from sklearn.metrics import confusion_matrix, accuracy_score, f1_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.exceptions import UndefinedMetricWarning
 import warnings
@@ -148,14 +148,20 @@ def calculate_measures(sentiment_dicts_true, sentiment_dicts_pred, print_model_n
             y_pred[i] = dict_pred[entity]
             i += 1
 
+    confusion_mtx = confusion_matrix(y_true, y_pred)
     acc = accuracy_score(y_true, y_pred)
-    precision = precision_score(y_true, y_pred, average=None)
-    recall = recall_score(y_true, y_pred, average=None)
-    f1 = f1_score(y_true, y_pred, average=None)
+    f1 = f1_score(y_true, y_pred, average='weighted')
+    rmse = mean_squared_error(y_true, y_pred) ** 0.5
+
     if print_model_name is not None:
-        print("Measures for {}:".format(print_model_name))
-        print("Accuracy: ", acc)
-        print("Precision: ", precision)
-        print("Recall: ", recall)
-        print('F1 score: ', f1)
-    return acc, precision, recall, f1
+        print('Measures for {}:'.format(print_model_name))
+        print('Confusion matrix:')
+        print(confusion_mtx)
+        print('Accuracy:')
+        print(acc)
+        print('F1 score:')
+        print(f1)
+        print('RMSE:')
+        print(rmse)
+
+    return confusion_mtx, acc, f1
