@@ -19,9 +19,16 @@ def main():
 
     evaluation = Evaluation(DATASET_DIR)
 
+    # RandomModel
     evaluation.evaluate(RandomModel())
+
+    # MajorityModel
     evaluation.evaluate(MajorityModel())
+
+    # LexiconFeaturesModel
     evaluation.evaluate(LexiconFeaturesModel(sentiment_lexicon_dict))
+
+    # BertModel
     evaluation.evaluate(BertModel(n_words_left_right=1, conv_filters=100, dense_units=256,
                                   dropout_rate=0.2, batch_size=128, epochs=5))
     evaluation.evaluate(BertModel(n_words_left_right=2, conv_filters=100, dense_units=256,
@@ -31,6 +38,10 @@ def main():
     evaluation.evaluate(BertModel(n_words_left_right=4, conv_filters=100, dense_units=256,
                                   dropout_rate=0.2, batch_size=128, epochs=5))
     evaluation.evaluate(BertModel(n_words_left_right=5, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=7, conv_filters=100, dense_units=256,
                                   dropout_rate=0.2, batch_size=128, epochs=5))
 
 
