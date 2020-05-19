@@ -15,15 +15,17 @@ class BertModel(GeneralModel):
         self.dropout_rate = dropout_rate
         self.batch_size = batch_size
         self.epochs = epochs
-
         # TODO: Undersampling - do we need this?
         self.under_sampling = False
 
-        self.model_path = '../data/models/bert_%d_%d_%d_%d_%d_%d' % (n_words_left_right, conv_filters, dense_units,
-                                                                     int(dropout_rate * 100), batch_size, epochs)
+        param_str = '%d_%d_%d_%d_%d_%d' % (n_words_left_right, conv_filters, dense_units,
+                                           int(dropout_rate * 100), batch_size, epochs)
         # TODO: Undersampling - do we need this?
         if self.under_sampling:
-            self.model_path += '_'
+            param_str += '_'
+
+        self.name = self.name = self.__class__.__name__ + '_' + param_str
+        self.model_path = '../data/models/bert_' + param_str
 
         self.random = np.random.RandomState(123)
 
