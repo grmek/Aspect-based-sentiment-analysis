@@ -18,6 +18,7 @@
 %% brackets. (The comma is a delimiter in case there are multiple options specified.)
 
 \usepackage[acceptedWithA]{tacl2018v2}
+\usepackage{graphicx}
 
 \title{Aspect-based sentiment analysis}
 
@@ -158,6 +159,37 @@ TODO
     \item Sentence splitting is done using the pretrained Punkt sentence tokenizer~\cite{kiss2006unsupervised} for Slovene provided with the \texttt{nltk} Python package~\cite{bird2009natural}.
 \end{itemize}
 
+\subsection{BERT model}
+
+The well known BERT (Bidirectional Encoder Representations from Transformers) model~\cite{devlin2018bert} can be used for variety of natural language processing tasks, including the sentiment analysis.
+We decided to utilize the pre-trained multilingual BERT embedding layers and combine them with additional convolutional layers and some dense layers at the end for direct classification of the sentiment.
+
+In order to prevent to much variation in the length of inputs (the number of mentions can vary significantly from entity to entity), we presented the idea of treating each mention of an entity as a separate learning case.
+Therefore we constructed a training set such that each input was represented with a set of words from the neighbourhood of the entity mention, and each output was a sentiment class (1 - 5) of the mentioned entity.
+In the prediction stage, where the goal is to predict the sentiment for the entity and not for all individual mentions of the entity, we decided to sum predictions over all mentions of the entity, and we select the class with maximum support.
+The main assumption here was, that all mentions of an entity has similar (hopefully equal) sentiment.
+Therefore, we may expect some issues if an entity would have extremely negative sentiment in some mentions and extremely positive sentiment in other mentions, but the average sentiment for this entity would be labeled neutral in our dataset.
+In this case, we would also assign neutral sentiment to all mentions of this entity when constructing the training samples, although some sentiments could be extremely negative or extremely positive.
+
+The architecture of our model is shown in Figure~\ref{fig:bert-model}.
+The model is roughly constructed from three parts - first part converts a sequence of words into word embeddings, where the pretrained BERT is used; the second part is convolving with different filters over the sequence of embeddings; and the third part is used for classifying the features, that were extracted with the convolution, into one of the five sentiment classes.
+
+The sequence of words is first extracted from the neighbourhood of the entity mention (parameter \textit{n\_words\_left\_right} defines how many words to the left and right are used).
+Then before using the BERT embedding layers, we encode the sequence of words and pad the sequence to a fixed length of 128.
+After obtaining the BERT embeddings, we use three parallel convolutional layers with \textit{conv\_filters} number of filters, where the kernels are of sizes 1, 2 and 3 correspondingly.
+To each filter we apply the max pooling, and then we concatenate the results into a vector of size $3 \cdot \textit{conv\_filters}$.
+The concatenated vector is then put through the dense layer with \textit{dense\_units} number of neurons, then we apply the dropout to prevent overfiting, and lastly we use the dense layer with 5 neurons and the softmax activation for the final classification (other neurons are using the relu activation).
+
+The model fitting procedure was done with different dropout rates (parameter \textit{dropout\_rate}) in batches of size \textit{batch\_size}, and with \textit{epochs} number of training repetitions.
+During the fitting, the weights from BERT embedding layers were not updated.
+
+\begin{figure}[]
+\centering
+\includegraphics[width=1.0\columnwidth]{bert-model.pdf}
+\caption{Architecture of the BERT model.}
+\label{fig:bert-model}
+\end{figure}
+
 \subsubsection{Further ideas}
 
 TODO (note: following ideas will be used for implementing a few more models)
@@ -194,6 +226,22 @@ Lexicon Features & 0.756    & 0.197
 \end{tabular}
 \caption{Model results on the test dataset.}
 \label{tab:results}
+\end{table}
+
+\subsection{BERT model}
+
+The model was developed with variety of free parameters.
+We tested different configurations in order to see the impact of each parameter on the model performance.
+All the results are listed in Table~\ref{tab:bert-results}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+Model            & Accuracy & F1-score \\ \hline
+TODO             & TODO     & TODO
+\end{tabular}
+\caption{TODO.}
+\label{tab:bert-results}
 \end{table}
 
 
