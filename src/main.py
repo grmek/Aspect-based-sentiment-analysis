@@ -54,6 +54,41 @@ def main():
     evaluation.evaluate(BertModel(n_words_left_right=7, conv_filters=100, dense_units=256,
                                   dropout_rate=0.2, batch_size=128, epochs=5))
 
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=50, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=150, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=64,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=128,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.1, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.3, batch_size=128, epochs=5))
+
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=32, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=64, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=5))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=10))
+    evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
+                                  dropout_rate=0.2, batch_size=128, epochs=15))
+
 
 def get_sentiment_lexicon(lexicon_dir):
     """
