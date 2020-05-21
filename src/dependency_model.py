@@ -40,7 +40,7 @@ class DependencyModel(GeneralModel):
         for pos in positive_around_num:
             self.feature_names.append(f'+-{pos} positive')
         for neg in negative_around_num:
-            self.feature_names.append(f'+-{neg} positive')
+            self.feature_names.append(f'+-{neg} negative')
 
         self.feature_names = self.feature_names + [
             'closest positive',
