@@ -4,6 +4,7 @@ from random_model import RandomModel
 from majority_model import MajorityModel
 from lexicon_features_model import LexiconFeaturesModel
 from bert_model import BertModel
+from dependency_model import DependencyModel
 
 
 DATA_DIR = '../data/'
@@ -88,6 +89,9 @@ def main():
                                   dropout_rate=0.2, batch_size=128, epochs=10))
     evaluation.evaluate(BertModel(n_words_left_right=6, conv_filters=100, dense_units=256,
                                   dropout_rate=0.2, batch_size=128, epochs=15))
+
+    evaluation.evaluate(DependencyModel(sentiment_lexicon_dict, positive_around_num=[1, 2, 3, 4, 5],
+                                             negative_around_num=[1, 2, 3, 4, 5], normalize_data=True))
 
 
 def get_sentiment_lexicon(lexicon_dir):
