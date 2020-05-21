@@ -464,3 +464,47 @@ F1 score:
 0.6288132809390741
 RMSE:
 0.7124637273136384
+
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Fitting started, fist create features
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Normalizing
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Lets fit RF model
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Feature importances:
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.14 all positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.14 all negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.13 all entities
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.08 +-5 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.07 positive - negative in sentence
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.07 positive in sentence
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.06 +-5 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.05 +-4 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.05 negative in sentence
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.04 closest positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.04 +-4 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.03 closest negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.03 +-3 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.02 +-3 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.01 +-2 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.01 +-2 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.01 +-1 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.0 +-1 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.0 all entity occurrences
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Predicting results ...
+DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T predicted statistics:
+Number of sentiments from 1 to 5 [   0.  160. 4515.  112.    0.]
+Measures for DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T:
+Confusion matrix:
+[[   0    5    9    0    0]
+ [   0   72  507    9    0]
+ [   0   72 3461   64    0]
+ [   0   11  529   37    0]
+ [   0    0    9    2    0]]
+Accuracy:
+0.7457697931898892
+F1 score:
+0.67777363970504
+Precision:
+0.6710920686355003
+Recall:
+0.7457697931898892
+RMSE:
+0.527299444725453
