@@ -12,10 +12,12 @@ Confusion matrix:
  [719 739 719 710 675]
  [109 117 106 113 107]
  [  0   1   1   2   1]]
-Accuracy:
-0.2010984368398817
 F1 score:
 0.2763640605473368
+Precision:
+0.597649846074786
+Recall:
+0.2010984368398817
 RMSE:
 1.4912078618351587
 
@@ -28,46 +30,16 @@ Confusion matrix:
  [   0    0 3562    0    0]
  [   0    0  552    0    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7524292353189692
 F1 score:
 0.6461313732416027
+Precision:
+0.5661497541626886
+Recall:
+0.7524292353189692
 RMSE:
 0.5057756824721248
 
-[LexiconFeaturesModel] Fitting started
-[LexiconFeaturesModel] Features are created, now searching for best model parameters
-[LexiconFeaturesModel] Best parametres: {'criterion': 'gini', 'max_depth': 5, 'n_estimators': 100}
-[LexiconFeaturesModel] Feature importances:
-[LexiconFeaturesModel]     0.22 +-5 negative
-[LexiconFeaturesModel]     0.17 all entity occurrences
-[LexiconFeaturesModel]     0.11 all negative
-[LexiconFeaturesModel]     0.11 closest negative
-[LexiconFeaturesModel]     0.09 +-5 positive
-[LexiconFeaturesModel]     0.08 closest positive
-[LexiconFeaturesModel]     0.08 all positive
-[LexiconFeaturesModel]     0.05 positive - negative in sentence
-[LexiconFeaturesModel]     0.05 negative in sentence
-[LexiconFeaturesModel]     0.03 all entities
-[LexiconFeaturesModel]     0.02 positive in sentence
-[LexiconFeaturesModel] Predicting
-[LexiconFeaturesModel] Features are created
-[LexiconFeaturesModel] Finished xD
-LexiconFeaturesModel predicted statistics:
-Number of sentiments from 1 to 5 [   0.  120. 4604.   10.    0.]
-Measures for LexiconFeaturesModel:
-Confusion matrix:
-[[   0    2    6    0    0]
- [   0   61  544    2    0]
- [   0   40 3519    3    0]
- [   0   16  533    3    0]
- [   0    1    2    2    0]]
-Accuracy:
-0.7568652302492607
-F1 score:
-0.6712554621213757
-RMSE:
-0.5111763151590185
+TODO: [LexiconFeaturesModel]
 
 [BertModel_1_100_256_20_128_5] Loading the model ...
 [BertModel_1_100_256_20_128_5] Predicitng results ...
@@ -80,10 +52,12 @@ Confusion matrix:
  [   0   11 3550    1    0]
  [   0    0  552    0    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7503168567807351
 F1 score:
 0.6459469713949662
+Precision:
+0.5843533187121158
+Recall:
+0.7503168567807351
 RMSE:
 0.5072353555864452
 
@@ -98,10 +72,12 @@ Confusion matrix:
  [   0   39 3523    0    0]
  [   0    7  545    0    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7494719053654415
 F1 score:
 0.6540937262791988
+Precision:
+0.6131202381994524
+Recall:
+0.7494719053654415
 RMSE:
 0.5124145317050373
 
@@ -116,10 +92,12 @@ Confusion matrix:
  [   0   27 3530    5    0]
  [   0    0  550    2    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7473595268272074
 F1 score:
 0.6470478224754579
+Precision:
+0.6102760137668117
+Recall:
+0.7473595268272074
 RMSE:
 0.5126206103506921
 
@@ -134,10 +112,12 @@ Confusion matrix:
  [   0  194 3329   39    0]
  [   0   26  513   13    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7249683143219265
 F1 score:
 0.662838706551792
+Precision:
+0.6347888595061786
+Recall:
+0.7249683143219265
 RMSE:
 0.5543925299939155
 
@@ -152,10 +132,12 @@ Confusion matrix:
  [   0  110 3328  124    0]
  [   0   13  498   41    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7232784114913392
 F1 score:
 0.6630546848548744
+Precision:
+0.6382602026488692
+Recall:
+0.7232784114913392
 RMSE:
 0.5597014715186212
 
@@ -170,10 +152,12 @@ Confusion matrix:
  [   0  192 3194  176    0]
  [   0   29  462   61    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7114490916772286
 F1 score:
 0.6734214194051181
+Precision:
+0.6518911030844815
+Recall:
+0.7114490916772286
 RMSE:
 0.5811792565668744
 
@@ -188,100 +172,32 @@ Confusion matrix:
  [   0  236 3184  141    1]
  [   0   23  479   50    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7082805238698775
 F1 score:
 0.6691529060075663
+Precision:
+0.6465350275281079
+Recall:
+0.7082805238698775
 RMSE:
 0.5775331775639879
 
 [BertModel_6_50_256_20_128_5] Loading the model ...
 [BertModel_6_50_256_20_128_5] Predicitng results ...
 BertModel_6_50_256_20_128_5 predicted statistics:
-Number of sentiments from 1 to 5 [   0.  102. 4114.  518.    0.]
+Number of sentiments from 1 to 5 [   0.   60. 4469.  205.    0.]
 Measures for BertModel_6_50_256_20_128_5:
 Confusion matrix:
-[[   0    0    5    3    0]
- [   0   27  484   96    0]
- [   0   65 3168  329    0]
- [   0   10  453   89    0]
- [   0    0    4    1    0]]
-Accuracy:
-0.6937051119560625
-F1 score:
-0.6502409576552686
-RMSE:
-0.6198722901572339
-
-[BertModel_6_100_256_20_128_5] Loading the model ...
-[BertModel_6_100_256_20_128_5] Predicitng results ...
-BertModel_6_100_256_20_128_5 predicted statistics:
-Number of sentiments from 1 to 5 [   0.  337. 4122.  275.    0.]
-Measures for BertModel_6_100_256_20_128_5:
-Confusion matrix:
-[[   0    3    4    1    0]
- [   0  113  457   37    0]
- [   0  192 3194  176    0]
- [   0   29  462   61    0]
+[[   0    0    7    1    0]
+ [   0   23  544   40    0]
+ [   0   31 3407  124    0]
+ [   0    6  506   40    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7114490916772286
 F1 score:
-0.6734214194051181
-RMSE:
-0.5811792565668744
-
-[BertModel_6_150_256_20_128_5] Loading the model ...
-[BertModel_6_150_256_20_128_5] Predicitng results ...
-BertModel_6_150_256_20_128_5 predicted statistics:
-Number of sentiments from 1 to 5 [   0.  392. 4061.  281.    0.]
-Measures for BertModel_6_150_256_20_128_5:
-Confusion matrix:
-[[   0    2    4    2    0]
- [   0  119  449   39    0]
- [   0  250 3130  182    0]
- [   0   21  473   58    0]
- [   0    0    5    0    0]]
-Accuracy:
-0.6985635825940009
-F1 score:
-0.6646790466871328
-RMSE:
-0.5903748460161717
-
-[BertModel_6_100_64_20_128_5] Loading the model ...
-[BertModel_6_100_64_20_128_5] Predicitng results ...
-BertModel_6_100_64_20_128_5 predicted statistics:
-Number of sentiments from 1 to 5 [   0.    0. 4734.    0.    0.]
-Measures for BertModel_6_100_64_20_128_5:
-Confusion matrix:
-[[   0    0    8    0    0]
- [   0    0  607    0    0]
- [   0    0 3562    0    0]
- [   0    0  552    0    0]
- [   0    0    5    0    0]]
-Accuracy:
-0.7524292353189692
-F1 score:
-0.6461313732416027
-RMSE:
-0.5057756824721248
-
-[BertModel_6_100_128_20_128_5] Loading the model ...
-[BertModel_6_100_128_20_128_5] Predicitng results ...
-BertModel_6_100_128_20_128_5 predicted statistics:
-Number of sentiments from 1 to 5 [   0.  157. 4423.  154.    0.]
-Measures for BertModel_6_100_128_20_128_5:
-Confusion matrix:
-[[   0    2    6    0    0]
- [   0   47  529   31    0]
- [   0  100 3365   97    0]
- [   0    8  518   26    0]
- [   0    0    5    0    0]]
-Accuracy:
-0.7262357414448669
-F1 score:
-0.6585344365823917
+0.6595732978913542
+Precision:
+0.6455275579924088
+Recall:
+0.7329953527672158
 RMSE:
 0.552675254221359
 
@@ -296,10 +212,92 @@ Confusion matrix:
  [   0  192 3194  176    0]
  [   0   29  462   61    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7114490916772286
 F1 score:
 0.6734214194051181
+Precision:
+0.6518911030844815
+Recall:
+0.7114490916772286
+RMSE:
+0.5811792565668744
+
+[BertModel_6_150_256_20_128_5] Loading the model ...
+[BertModel_6_150_256_20_128_5] Predicitng results ...
+BertModel_6_150_256_20_128_5 predicted statistics:
+Number of sentiments from 1 to 5 [   0.  343. 4175.  216.    0.]
+Measures for BertModel_6_150_256_20_128_5:
+Confusion matrix:
+[[   0    4    3    1    0]
+ [   0   96  474   37    0]
+ [   0  216 3209  137    0]
+ [   0   27  484   41    0]
+ [   0    0    5    0    0]]
+F1 score:
+0.6625195111502009
+Precision:
+0.6363542970221318
+Recall:
+0.7068018588931136
+RMSE:
+0.5835369914267039
+
+[BertModel_6_100_64_20_128_5] Loading the model ...
+[BertModel_6_100_64_20_128_5] Predicitng results ...
+BertModel_6_100_64_20_128_5 predicted statistics:
+Number of sentiments from 1 to 5 [   0.    0. 4734.    0.    0.]
+Measures for BertModel_6_100_64_20_128_5:
+Confusion matrix:
+[[   0    0    8    0    0]
+ [   0    0  607    0    0]
+ [   0    0 3562    0    0]
+ [   0    0  552    0    0]
+ [   0    0    5    0    0]]
+F1 score:
+0.6461313732416027
+Precision:
+0.5661497541626886
+Recall:
+0.7524292353189692
+RMSE:
+0.5057756824721248
+
+[BertModel_6_100_128_20_128_5] Loading the model ...
+[BertModel_6_100_128_20_128_5] Predicitng results ...
+BertModel_6_100_128_20_128_5 predicted statistics:
+Number of sentiments from 1 to 5 [   0.  157. 4423.  154.    0.]
+Measures for BertModel_6_100_128_20_128_5:
+Confusion matrix:
+[[   0    2    6    0    0]
+ [   0   47  529   31    0]
+ [   0  100 3365   97    0]
+ [   0    8  518   26    0]
+ [   0    0    5    0    0]]
+F1 score:
+0.6585344365823917
+Precision:
+0.6305160462216468
+Recall:
+0.7262357414448669
+RMSE:
+0.552675254221359
+
+[BertModel_6_100_256_20_128_5] Loading the model ...
+[BertModel_6_100_256_20_128_5] Predicitng results ...
+BertModel_6_100_256_20_128_5 predicted statistics:
+Number of sentiments from 1 to 5 [   0.  337. 4122.  275.    0.]
+Measures for BertModel_6_100_256_20_128_5:
+Confusion matrix:
+[[   0    3    4    1    0]
+ [   0  113  457   37    0]
+ [   0  192 3194  176    0]
+ [   0   29  462   61    0]
+ [   0    0    5    0    0]]
+F1 score:
+0.6734214194051181
+Precision:
+0.6518911030844815
+Recall:
+0.7114490916772286
 RMSE:
 0.5811792565668744
 
@@ -314,10 +312,12 @@ Confusion matrix:
  [   0  205 3198  159    0]
  [   0   33  478   41    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7131389945078158
 F1 score:
 0.6745150247448823
+Precision:
+0.6509656134298354
+Recall:
+0.7131389945078158
 RMSE:
 0.5815426071847802
 
@@ -332,10 +332,12 @@ Confusion matrix:
  [   0  192 3194  176    0]
  [   0   29  462   61    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7114490916772286
 F1 score:
 0.6734214194051181
+Precision:
+0.6518911030844815
+Recall:
+0.7114490916772286
 RMSE:
 0.5811792565668744
 
@@ -350,30 +352,34 @@ Confusion matrix:
  [   0  323 3039  200    0]
  [   0   39  441   72    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.6905365441487115
 F1 score:
 0.6685963075301298
+Precision:
+0.652516466381114
+Recall:
+0.6905365441487115
 RMSE:
 0.6076543166005753
 
 [BertModel_6_100_256_20_32_5] Loading the model ...
 [BertModel_6_100_256_20_32_5] Predicitng results ...
 BertModel_6_100_256_20_32_5 predicted statistics:
-Number of sentiments from 1 to 5 [0.000e+00 3.000e+00 4.639e+03 9.200e+01 0.000e+00]
+Number of sentiments from 1 to 5 [   0.   82. 4597.   55.    0.]
 Measures for BertModel_6_100_256_20_32_5:
 Confusion matrix:
-[[   0    0    7    1    0]
- [   0    3  586   18    0]
- [   0    0 3508   54    0]
- [   0    0  533   19    0]
+[[   0    1    7    0    0]
+ [   0   27  568   12    0]
+ [   0   50 3475   37    0]
+ [   0    4  542    6    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7456696239966202
 F1 score:
-0.651848806164657
+0.6532887812933995
+Precision:
+0.6237217541668573
+Recall:
+0.7410223912125052
 RMSE:
-0.524434634323548
+0.5260433332993212
 
 [BertModel_6_100_256_20_64_5] Loading the model ...
 [BertModel_6_100_256_20_64_5] Predicitng results ...
@@ -386,10 +392,12 @@ Confusion matrix:
  [   0   58 3410   94    0]
  [   0    2  518   32    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7334178284748627
 F1 score:
 0.6591676410799222
+Precision:
+0.6379906254328859
+Recall:
+0.7334178284748627
 RMSE:
 0.5440075672328379
 
@@ -404,10 +412,12 @@ Confusion matrix:
  [   0  192 3194  176    0]
  [   0   29  462   61    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7114490916772286
 F1 score:
 0.6734214194051181
+Precision:
+0.6518911030844815
+Recall:
+0.7114490916772286
 RMSE:
 0.5811792565668744
 
@@ -422,48 +432,54 @@ Confusion matrix:
  [   0  192 3194  176    0]
  [   0   29  462   61    0]
  [   0    0    5    0    0]]
-Accuracy:
-0.7114490916772286
 F1 score:
 0.6734214194051181
+Precision:
+0.6518911030844815
+Recall:
+0.7114490916772286
 RMSE:
 0.5811792565668744
 
 [BertModel_6_100_256_20_128_10] Loading the model ...
 [BertModel_6_100_256_20_128_10] Predicitng results ...
 BertModel_6_100_256_20_128_10 predicted statistics:
-Number of sentiments from 1 to 5 [5.000e+00 6.770e+02 3.542e+03 5.080e+02 2.000e+00]
+Number of sentiments from 1 to 5 [5.00e+00 4.40e+02 3.97e+03 3.18e+02 1.00e+00]
 Measures for BertModel_6_100_256_20_128_10:
 Confusion matrix:
-[[   0    4    4    0    0]
- [   0  198  349   60    0]
- [   5  414 2799  342    2]
- [   0   61  385  106    0]
- [   0    0    5    0    0]]
-Accuracy:
-0.6554710604140261
+[[   0    5    3    0    0]
+ [   0  142  421   44    0]
+ [   5  252 3105  199    1]
+ [   0   41  437   74    0]
+ [   0    0    4    1    0]]
 F1 score:
-0.6557848912218427
+0.6749806827799691
+Precision:
+0.6570014808143092
+Recall:
+0.7015209125475285
 RMSE:
-0.6567706582265939
+0.6004856505167735
 
 [BertModel_6_100_256_20_128_15] Loading the model ...
 [BertModel_6_100_256_20_128_15] Predicitng results ...
 BertModel_6_100_256_20_128_15 predicted statistics:
-Number of sentiments from 1 to 5 [  36. 1134. 3278.  266.   20.]
+Number of sentiments from 1 to 5 [1.000e+00 5.380e+02 3.743e+03 4.260e+02 2.600e+01]
 Measures for BertModel_6_100_256_20_128_15:
 Confusion matrix:
 [[   0    6    2    0    0]
- [  10  277  294   24    2]
- [  22  733 2604  189   14]
- [   4  118  373   53    4]
+ [   0  153  405   47    2]
+ [   1  324 2937  277   23]
+ [   0   55  394  102    1]
  [   0    0    5    0    0]]
-Accuracy:
-0.6197718631178707
 F1 score:
-0.6288132809390741
+0.6636226295704204
+Precision:
+0.654788208410493
+Recall:
+0.6742712294043093
 RMSE:
-0.7124637273136384
+0.6429560482120095
 
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Fitting started, fist create features
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Normalizing
@@ -498,8 +514,6 @@ Confusion matrix:
  [   0   72 3461   64    0]
  [   0   11  529   37    0]
  [   0    0    9    2    0]]
-Accuracy:
-0.7457697931898892
 F1 score:
 0.67777363970504
 Precision:
