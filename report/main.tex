@@ -117,26 +117,22 @@ Sentiment label   & Entity count \\ \hline
 
 \subsection{Models}
 
-TODO
+All developed models are described in this section.
+First two models are really simple and have no practical use - we implemented them as a starting point in order to test the entire evaluation framework, and to have a reference performance for comparing other more complex models.
 
 \subsubsection{Random model}
 
-TODO
-\begin{itemize}
-    \item Randomly assigns sentiment from 1 to 5 to each entity.
-    \item No real value.
-    \item Developed along with the evaluation toolbox only for testing.
-    \item Also serves as a model that should be evaluated with the lowest possible score.
-\end{itemize}
+The Random model simply assigns random sentiment (1 - 5) to each entity, without knowing anything about the actual sentiment.
+Assigned sentiments are uniformly distributed, and even the distribution of the sentiments in the dataset was not taken into account.
+We are expecting that this model would serve as a reference for the lowest possible evaluation performance.
 
 \subsubsection{Majority model}
 
-TODO
-\begin{itemize}
-    \item Assigns the neutral sentiment (3) to all entities.
-    \item Should produce a decent score because of the distribution of the sentiment classes.
-    \item Will serve for a reference score - complex models should not be performing worse than this simple majority model.
-\end{itemize}
+The Majority model assigns neutral sentiment (3) to all entities.
+The idea for this model came from a fact that around 75\% of the entities in the dataset are labeled with the neutral sentiment.
+Therefore, we are expecting decent performance because of the distribution of the sentiments in the dataset.
+We will also use this performance as a reference for comparing other models.
+More complex models are expected to extract more knowledge from the given data, and they should be performing better than this one.
 
 \subsubsection{Lexicon Features model}
 
@@ -159,7 +155,7 @@ TODO
     \item Sentence splitting is done using the pretrained Punkt sentence tokenizer~\cite{kiss2006unsupervised} for Slovene provided with the \texttt{nltk} Python package~\cite{bird2009natural}.
 \end{itemize}
 
-\subsection{BERT model}
+\subsubsection{BERT model}
 
 The well known BERT (Bidirectional Encoder Representations from Transformers) model~\cite{devlin2018bert} can be used for variety of natural language processing tasks, including the sentiment analysis.
 We decided to utilize the pre-trained multilingual BERT embedding layers and combine them with additional convolutional layers and some dense layers at the end for direct classification of the sentiment.
@@ -174,6 +170,13 @@ In this case, we would also assign neutral sentiment to all mentions of this ent
 The architecture of our model is shown in Figure~\ref{fig:bert-model}.
 The model is roughly constructed from three parts - first part converts a sequence of words into word embeddings, where the pretrained BERT is used; the second part is convolving with different filters over the sequence of embeddings; and the third part is used for classifying the features, that were extracted with the convolution, into one of the five sentiment classes.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\columnwidth]{bert-model.pdf}
+\caption{Architecture of the BERT model.}
+\label{fig:bert-model}
+\end{figure}
+
 The sequence of words is first extracted from the neighbourhood of the entity mention (parameter \textit{n\_words\_left\_right} defines how many words to the left and right are used).
 Then before using the BERT embedding layers, we encode the sequence of words and pad the sequence to a fixed length of 128.
 After obtaining the BERT embeddings, we use three parallel convolutional layers with \textit{conv\_filters} number of filters, where the kernels are of sizes 1, 2 and 3 correspondingly.
@@ -183,22 +186,9 @@ The concatenated vector is then put through the dense layer with \textit{dense\_
 The model fitting procedure was done with different dropout rates (parameter \textit{dropout\_rate}) in batches of size \textit{batch\_size}, and with \textit{epochs} number of training repetitions.
 During the fitting, the weights from BERT embedding layers were not updated.
 
-\begin{figure}[]
-\centering
-\includegraphics[width=1.0\columnwidth]{bert-model.pdf}
-\caption{Architecture of the BERT model.}
-\label{fig:bert-model}
-\end{figure}
+\subsubsection{Dependency model}
 
-\subsubsection{Further ideas}
-
-TODO (note: following ideas will be used for implementing a few more models)
-\begin{itemize}
-    \item Current features in the Lex. Feat. model depend mainly on the positive/negative words in the neighborhood of the entity. Instead of looking at the neighborhood, we could use a dependency parser and observe sentiment of the most related words (not necessary in the neighbourhood).
-    \item Instead of constructing handcrafted features, we could use BERT model for feature extraction. Those features depend on the context of each word, so we could simply use feature representation of each entity word occurrence and its sentiment as a learning sample for some classifier. With the trained classifier, we could predict sentiment for each occurrence of the entity and calculate the average sentiment for the entity.
-    \item Test the effect of using different classifiers (re-implement a single model with different classifiers)
-    \item Combine multiple feat. representations into a single model (normalize and concatenate feature vectors from different models and let the classifier use/learn most important features from all models).
-\end{itemize}
+TODO
 
 \subsection{Evaluation}
 
@@ -214,35 +204,107 @@ TODO
 
 TODO
 
-Table~\ref{tab:results} lists the results of our models on the test dataset.
+\subsection{Lexicon Features model}
 
-\begin{table}[h]
-\centering
-\begin{tabular}{lll}
-Model            & Accuracy & F1-score \\ \hline
-Random model     & 0.203    & 0.128    \\
-Majority model   & 0.751    & 0.172    \\
-Lexicon Features & 0.756    & 0.197   
-\end{tabular}
-\caption{Model results on the test dataset.}
-\label{tab:results}
-\end{table}
+TODO
 
 \subsection{BERT model}
 
 The model was developed with variety of free parameters.
 We tested different configurations in order to see the impact of each parameter on the model performance.
-All the results are listed in Table~\ref{tab:bert-results}.
+For the starting point we set the parameters as follows: \textit{n\_words\_left\_right}: 6, \textit{conv\_filters}: 100, \textit{dense\_units}: 256, \textit{dropout\_rate}: 0.2, \textit{batch\_size}: 128, \textit{epochs}: 5.
+Then we evaluated several experiments were we were changing one parameter at a time and left all others fixed.
+All the results are given in Tables~\ref{tab:bert-results-1},~\ref{tab:bert-results-2},~\ref{tab:bert-results-3},~\ref{tab:bert-results-4},~\ref{tab:bert-results-5},~\ref{tab:bert-results-6} and in Figure~\ref{fig:bert-model-results}.
 
 \begin{table}[h]
 \centering
-\begin{tabular}{lll}
-Model            & Accuracy & F1-score \\ \hline
-TODO             & TODO     & TODO
+\begin{tabular}{ccccc}
+  & F1 score & Precision & Recall & RMSE   \\ \hline
+1 & 0.6459   & 0.5844    & 0.7503 & 0.5072 \\
+2 & 0.6541   & 0.6131    & 0.7495 & 0.5124 \\
+3 & 0.6470   & 0.6103    & 0.7474 & 0.5126 \\
+4 & 0.6628   & 0.6348    & 0.7250 & 0.5544 \\
+5 & 0.6631   & 0.6383    & 0.7233 & 0.5597 \\
+6 & 0.6734   & 0.6519    & 0.7114 & 0.5812 \\
+7 & 0.6692   & 0.6465    & 0.7083 & 0.5775
 \end{tabular}
-\caption{TODO.}
-\label{tab:bert-results}
+\caption{Evaluation results of the BERT model with respect to parameter \textit{n\_words\_left\_right}.}
+\label{tab:bert-results-1}
 \end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+    & F1 score & Precision & Recall & RMSE   \\ \hline
+50  & 0.6596   & 0.6455    & 0.7330 & 0.5527 \\
+100 & 0.6734   & 0.6519    & 0.7114 & 0.5812 \\
+150 & 0.6625   & 0.6364    & 0.7068 & 0.5835
+\end{tabular}
+\caption{Evaluation results of the BERT model with respect to parameter \textit{conv\_filters}.}
+\label{tab:bert-results-2}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+    & F1 score & Precision & Recall & RMSE   \\ \hline
+64  & 0.6461   & 0.5661    & 0.7524 & 0.5058 \\
+128 & 0.6585   & 0.6305    & 0.7262 & 0.5527 \\
+256 & 0.6734   & 0.6519    & 0.7114 & 0.5812
+\end{tabular}
+\caption{Evaluation results of the BERT model with respect to parameter \textit{dense\_units}.}
+\label{tab:bert-results-3}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+    & F1 score & Precision & Recall & RMSE   \\ \hline
+0.1 & 0.6745   & 0.6510    & 0.7131 & 0.5815 \\
+0.2 & 0.6734   & 0.6519    & 0.7114 & 0.5812 \\
+0.3 & 0.6686   & 0.6525    & 0.6905 & 0.6077
+\end{tabular}
+\caption{Evaluation results of the BERT model with respect to parameter \textit{dropout\_rate}.}
+\label{tab:bert-results-4}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+    & F1 score & Precision & Recall & RMSE   \\ \hline
+32  & 0.6533   & 0.6237    & 0.7410 & 0.5260 \\
+64  & 0.6592   & 0.6380    & 0.7334 & 0.5440 \\
+128 & 0.6734   & 0.6519    & 0.7114 & 0.5812
+\end{tabular}
+\caption{Evaluation results of the BERT model with respect to parameter \textit{batch\_size}.}
+\label{tab:bert-results-5}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+   & F1 score & Precision & Recall & RMSE   \\ \hline
+5  & 0.6734   & 0.6519    & 0.7114 & 0.5812 \\
+10 & 0.6750   & 0.6570    & 0.7015 & 0.6005 \\
+15 & 0.6636   & 0.6548    & 0.6743 & 0.6430
+\end{tabular}
+\caption{Evaluation results of the BERT model with respect to parameter \textit{epochs}.}
+\label{tab:bert-results-6}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\columnwidth]{bert-model-results.png}
+\caption{Evaluation results of the BERT model.}
+\label{fig:bert-model-results}
+\end{figure}
+
+TODO (explain results)
+
+\subsection{Dependency model}
+
+TODO
+
 
 
 \section{Discussion}
