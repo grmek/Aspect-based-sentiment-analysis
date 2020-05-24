@@ -696,6 +696,156 @@ Recall:
 RMSE:
 0.6429560482120095
 
+[DependencyModel__[3]_[3]_T] Fitting started, fist create features
+[DependencyModel__[3]_[3]_T] Normalizing
+[DependencyModel__[3]_[3]_T] Lets fit RF model
+[DependencyModel__[3]_[3]_T] Feature importances:
+[DependencyModel__[3]_[3]_T]     0.17 all positive
+[DependencyModel__[3]_[3]_T]     0.16 all negative
+[DependencyModel__[3]_[3]_T]     0.15 all entities
+[DependencyModel__[3]_[3]_T]     0.09 all entity occurrences
+[DependencyModel__[3]_[3]_T]     0.09 positive - negative in sentence
+[DependencyModel__[3]_[3]_T]     0.08 positive in sentence
+[DependencyModel__[3]_[3]_T]     0.06 closest positive
+[DependencyModel__[3]_[3]_T]     0.06 +-3 positive
+[DependencyModel__[3]_[3]_T]     0.06 negative in sentence
+[DependencyModel__[3]_[3]_T]     0.05 closest negative
+[DependencyModel__[3]_[3]_T]     0.04 +-3 negative
+[DependencyModel__[3]_[3]_T] Predicting results ...
+DependencyModel__[3]_[3]_T predicted statistics:
+Number of sentiments from 1 to 5 [   0.  166. 4491.  130.    0.]
+Measures for DependencyModel__[3]_[3]_T:
+Confusion matrix:
+[[   0    4   10    0    0]
+ [   0   62  519    7    0]
+ [   0   85 3434   78    0]
+ [   0   14  519   44    0]
+ [   0    1    9    1    0]]
+Accuracy:
+0.7395028201378734
+F1 score:
+0.6732703226654757
+Precision:
+0.6612321402067247
+Recall:
+0.7395028201378734
+RMSE:
+0.5359442740472754
+
+[DependencyModel__[3]_[3]_F] Fitting started, fist create features
+[DependencyModel__[3]_[3]_F] Lets fit RF model
+[DependencyModel__[3]_[3]_F] Feature importances:
+[DependencyModel__[3]_[3]_F]     0.17 all positive
+[DependencyModel__[3]_[3]_F]     0.16 all negative
+[DependencyModel__[3]_[3]_F]     0.15 all entities
+[DependencyModel__[3]_[3]_F]     0.09 all entity occurrences
+[DependencyModel__[3]_[3]_F]     0.09 positive - negative in sentence
+[DependencyModel__[3]_[3]_F]     0.08 positive in sentence
+[DependencyModel__[3]_[3]_F]     0.06 closest positive
+[DependencyModel__[3]_[3]_F]     0.06 negative in sentence
+[DependencyModel__[3]_[3]_F]     0.05 +-3 positive
+[DependencyModel__[3]_[3]_F]     0.05 closest negative
+[DependencyModel__[3]_[3]_F]     0.04 +-3 negative
+[DependencyModel__[3]_[3]_F] Predicting results ...
+DependencyModel__[3]_[3]_F predicted statistics:
+Number of sentiments from 1 to 5 [   0.  167. 4507.  113.    0.]
+Measures for DependencyModel__[3]_[3]_F:
+Confusion matrix:
+[[   0    4   10    0    0]
+ [   0   68  511    9    0]
+ [   0   79 3455   63    0]
+ [   0   15  523   39    0]
+ [   0    1    8    2    0]]
+Accuracy:
+0.7440986003760184
+F1 score:
+0.6764531508876335
+Precision:
+0.6676361205222503
+Recall:
+0.7440986003760184
+RMSE:
+0.5328169284625998
+
+[DependencyModel__[1,2,3]_[1,2,3]_T] Fitting started, fist create features
+[DependencyModel__[1,2,3]_[1,2,3]_T] Normalizing
+[DependencyModel__[1,2,3]_[1,2,3]_T] Lets fit RF model
+[DependencyModel__[1,2,3]_[1,2,3]_T] Feature importances:
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.16 all positive
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.16 all negative
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.15 all entities
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.11 positive - negative in sentence
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.1 negative in sentence
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.08 positive in sentence
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.05 closest positive
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.05 +-3 positive
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.05 closest negative
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.04 +-3 negative
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.02 +-2 positive
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.01 +-1 positive
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.01 +-2 negative
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.01 +-1 negative
+[DependencyModel__[1,2,3]_[1,2,3]_T]     0.0 all entity occurrences
+[DependencyModel__[1,2,3]_[1,2,3]_T] Predicting results ...
+DependencyModel__[1,2,3]_[1,2,3]_T predicted statistics:
+Number of sentiments from 1 to 5 [   0.  204. 4490.   93.    0.]
+Measures for DependencyModel__[1,2,3]_[1,2,3]_T:
+Confusion matrix:
+[[   0    5    9    0    0]
+ [   0   80  501    7    0]
+ [   0   95 3448   54    0]
+ [   0   23  523   31    0]
+ [   0    1    9    1    0]]
+Accuracy:
+0.7434719030708168
+F1 score:
+0.6767159980201873
+Precision:
+0.6653773161228352
+Recall:
+0.7434719030708168
+RMSE:
+0.5369178339306028
+
+[DependencyModel__[1,2,3]_[1,2,3]_F] Fitting started, fist create features
+[DependencyModel__[1,2,3]_[1,2,3]_F] Lets fit RF model
+[DependencyModel__[1,2,3]_[1,2,3]_F] Feature importances:
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.17 all positive
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.16 all negative
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.15 all entities
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.12 positive - negative in sentence
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.1 negative in sentence
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.08 positive in sentence
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.05 closest positive
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.05 closest negative
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.04 +-3 positive
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.04 +-3 negative
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.02 +-2 positive
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.01 +-2 negative
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.01 +-1 positive
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.01 +-1 negative
+[DependencyModel__[1,2,3]_[1,2,3]_F]     0.0 all entity occurrences
+[DependencyModel__[1,2,3]_[1,2,3]_F] Predicting results ...
+DependencyModel__[1,2,3]_[1,2,3]_F predicted statistics:
+Number of sentiments from 1 to 5 [   0.  171. 4527.   89.    0.]
+Measures for DependencyModel__[1,2,3]_[1,2,3]_F:
+Confusion matrix:
+[[   0    6    8    0    0]
+ [   0   66  517    5    0]
+ [   0   87 3461   49    0]
+ [   0   11  532   34    0]
+ [   0    1    9    1    0]]
+Accuracy:
+0.7438897012742846
+F1 score:
+0.6739029945200842
+Precision:
+0.6679271036384852
+Recall:
+0.7438897012742846
+RMSE:
+0.5276954638910958
+
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Fitting started, fist create features
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Normalizing
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Lets fit RF model
@@ -703,9 +853,9 @@ RMSE:
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.14 all positive
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.14 all negative
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.13 all entities
-[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.08 +-5 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.09 +-5 negative
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.07 positive - negative in sentence
-[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.07 positive in sentence
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.06 positive in sentence
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.06 +-5 positive
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.05 +-4 positive
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.05 negative in sentence
@@ -715,25 +865,71 @@ RMSE:
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.03 +-3 positive
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.02 +-3 negative
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.01 +-2 positive
-[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.01 +-2 negative
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.01 +-1 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.01 +-2 negative
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.0 +-1 negative
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T]     0.0 all entity occurrences
 [DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T] Predicting results ...
 DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T predicted statistics:
-Number of sentiments from 1 to 5 [   0.  160. 4515.  112.    0.]
+Number of sentiments from 1 to 5 [   0.  163. 4538.   86.    0.]
 Measures for DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_T:
 Confusion matrix:
-[[   0    5    9    0    0]
- [   0   72  507    9    0]
- [   0   72 3461   64    0]
- [   0   11  529   37    0]
- [   0    0    9    2    0]]
+[[   0    3   11    0    0]
+ [   0   70  511    7    0]
+ [   0   72 3478   47    0]
+ [   0   18  528   31    0]
+ [   0    0   10    1    0]]
+Accuracy:
+0.747649885105494
 F1 score:
-0.67777363970504
+0.6766786839215053
 Precision:
-0.6710920686355003
+0.6720922047760436
 Recall:
-0.7457697931898892
+0.747649885105494
 RMSE:
-0.527299444725453
+0.5302623793310053
+
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F] Fitting started, fist create features
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F] Lets fit RF model
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F] Feature importances:
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.14 all positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.14 all negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.13 all entities
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.08 +-5 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.07 positive - negative in sentence
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.07 positive in sentence
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.06 +-5 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.05 negative in sentence
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.05 +-4 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.04 +-4 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.04 closest positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.03 closest negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.03 +-3 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.02 +-3 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.01 +-2 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.01 +-2 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.01 +-1 positive
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.0 +-1 negative
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F]     0.0 all entity occurrences
+[DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F] Predicting results ...
+DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F predicted statistics:
+Number of sentiments from 1 to 5 [   0.  156. 4521.  110.    0.]
+Measures for DependencyModel__[1,2,3,4,5]_[1,2,3,4,5]_F:
+Confusion matrix:
+[[   0    6    8    0    0]
+ [   0   71  510    7    0]
+ [   0   63 3475   59    0]
+ [   0   16  520   41    0]
+ [   0    0    8    3    0]]
+Accuracy:
+0.749321077919365
+F1 score:
+0.6811296850646174
+Precision:
+0.6783914858735808
+Recall:
+0.749321077919365
+RMSE:
+0.5245189386318638
+
