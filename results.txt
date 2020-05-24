@@ -39,7 +39,222 @@ Recall:
 RMSE:
 0.5057756824721248
 
-TODO: [LexiconFeaturesModel]
+
+[LexiconFeaturesModel__[5]_[5]_F] Fitting started, fist create features
+[LexiconFeaturesModel__[5]_[5]_F] Lets fit RF model
+[LexiconFeaturesModel__[5]_[5]_F] Feature importances:
+[LexiconFeaturesModel__[5]_[5]_F]     0.17 all positive
+[LexiconFeaturesModel__[5]_[5]_F]     0.15 all entities
+[LexiconFeaturesModel__[5]_[5]_F]     0.15 all negative
+[LexiconFeaturesModel__[5]_[5]_F]     0.09 positive - negative in sentence
+[LexiconFeaturesModel__[5]_[5]_F]     0.08 all entity occurrences
+[LexiconFeaturesModel__[5]_[5]_F]     0.08 positive in sentence
+[LexiconFeaturesModel__[5]_[5]_F]     0.06 closest positive
+[LexiconFeaturesModel__[5]_[5]_F]     0.06 +-5 positive
+[LexiconFeaturesModel__[5]_[5]_F]     0.06 negative in sentence
+[LexiconFeaturesModel__[5]_[5]_F]     0.05 closest negative
+[LexiconFeaturesModel__[5]_[5]_F]     0.05 +-5 negative
+[LexiconFeaturesModel__[5]_[5]_F] Predicting results ...
+LexiconFeaturesModel__[5]_[5]_F predicted statistics:
+Number of sentiments from 1 to 5 [0.000e+00 1.480e+02 4.478e+03 7.900e+01 1.000e+00]
+Measures for LexiconFeaturesModel__[5]_[5]_F:
+Confusion matrix:
+[[   0    2    9    0    0]
+ [   0   65  562    4    0]
+ [   0   55 3430   49    0]
+ [   0   26  469   24    1]
+ [   0    0    8    2    0]]
+F1 score:
+0.6742110749228467
+Precision:
+0.667664738964169
+Recall:
+0.7477688057798555
+RMSE:
+0.5312183592237477
+
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T] Fitting started, fist create features
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T] Normalizing
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T] Lets fit RF model
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T] Feature importances:
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.15 all positive
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.14 all entities
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.13 all negative
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.11 positive - negative in sentence
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.08 negative in sentence
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.08 positive in sentence
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.06 +-10 positive
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.05 closest positive
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.04 +-10 negative
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.04 +-5 positive
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.04 closest negative
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.03 +-3 positive
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.03 +-5 negative
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.02 +-3 negative
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T]     0.0 all entity occurrences
+[LexiconFeaturesModel__[3,5,10]_[3,5,10]_T] Predicting results ...
+LexiconFeaturesModel__[3,5,10]_[3,5,10]_T predicted statistics:
+Number of sentiments from 1 to 5 [0.000e+00 1.480e+02 4.501e+03 5.600e+01 1.000e+00]
+Measures for LexiconFeaturesModel__[3,5,10]_[3,5,10]_T:
+Confusion matrix:
+[[   0    4    6    1    0]
+ [   0   66  562    3    0]
+ [   0   58 3450   26    0]
+ [   0   20  475   24    1]
+ [   0    0    8    2    0]]
+F1 score:
+0.6768067971981103
+Precision:
+0.682755435535051
+Recall:
+0.7522311942201445
+RMSE:
+0.5225472931784834
+
+[LexiconFeaturesModel__[3,5,10]_[3]_T] Fitting started, fist create features
+[LexiconFeaturesModel__[3,5,10]_[3]_T] Normalizing
+[LexiconFeaturesModel__[3,5,10]_[3]_T] Lets fit RF model
+[LexiconFeaturesModel__[3,5,10]_[3]_T] Feature importances:
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.17 all negative
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.17 all positive
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.15 all entities
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.08 positive - negative in sentence
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.08 positive in sentence
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.07 +-10 positive
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.06 closest positive
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.05 negative in sentence
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.05 closest negative
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.04 +-5 positive
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.04 +-3 negative
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.04 +-3 positive
+[LexiconFeaturesModel__[3,5,10]_[3]_T]     0.0 all entity occurrences
+[LexiconFeaturesModel__[3,5,10]_[3]_T] Predicting results ...
+LexiconFeaturesModel__[3,5,10]_[3]_T predicted statistics:
+Number of sentiments from 1 to 5 [   0.  148. 4464.   94.    0.]
+Measures for LexiconFeaturesModel__[3,5,10]_[3]_T:
+Confusion matrix:
+[[   0    6    5    0    0]
+ [   0   74  552    5    0]
+ [   0   49 3421   64    0]
+ [   0   19  476   25    0]
+ [   0    0   10    0    0]]
+F1 score:
+0.6768883295941723
+Precision:
+0.6719272288582856
+Recall:
+0.7479813004674883
+RMSE:
+0.5261944298313603
+
+[LexiconFeaturesModel__[5]_[3,5,10]_T] Fitting started, fist create features
+[LexiconFeaturesModel__[5]_[3,5,10]_T] Normalizing
+[LexiconFeaturesModel__[5]_[3,5,10]_T] Lets fit RF model
+[LexiconFeaturesModel__[5]_[3,5,10]_T] Feature importances:
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.17 all positive
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.17 all negative
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.16 all entities
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.09 positive - negative in sentence
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.08 positive in sentence
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.07 closest positive
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.06 +-5 positive
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.05 negative in sentence
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.05 +-10 negative
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.04 closest negative
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.04 +-5 negative
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.03 +-3 negative
+[LexiconFeaturesModel__[5]_[3,5,10]_T]     0.0 all entity occurrences
+[LexiconFeaturesModel__[5]_[3,5,10]_T] Predicting results ...
+LexiconFeaturesModel__[5]_[3,5,10]_T predicted statistics:
+Number of sentiments from 1 to 5 [   0.  141. 4481.   84.    0.]
+Measures for LexiconFeaturesModel__[5]_[3,5,10]_T:
+Confusion matrix:
+[[   0    2    8    1    0]
+ [   0   62  565    4    0]
+ [   0   57 3426   51    0]
+ [   0   20  474   26    0]
+ [   0    0    8    2    0]]
+F1 score:
+0.6730401151359815
+Precision:
+0.667312717931179
+Recall:
+0.7467063323416915
+RMSE:
+0.5296158869174037
+
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F] Fitting started, fist create features
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F] Lets fit RF model
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F] Feature importances:
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.15 all positive
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.13 all negative
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.13 all entities
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.09 positive - negative in sentence
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.09 positive in sentence
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.06 +-15 positive
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.05 negative in sentence
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.05 +-10 positive
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.05 closest positive
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.04 +-10 negative
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.03 +-5 positive
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.03 closest negative
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.03 +-3 positive
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.03 +-5 negative
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.03 +-3 negative
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F]     0.0 all entity occurrences
+[LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F] Predicting results ...
+LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F predicted statistics:
+Number of sentiments from 1 to 5 [   0.  150. 4483.   73.    0.]
+Measures for LexiconFeaturesModel__[3,5,10,15]_[3,5,10]_F:
+Confusion matrix:
+[[   0    2    8    1    0]
+ [   0   72  556    3    0]
+ [   0   54 3435   45    0]
+ [   0   22  476   22    0]
+ [   0    0    8    2    0]]
+F1 score:
+0.6764372717632822
+Precision:
+0.6730645947761389
+Recall:
+0.7498937526561836
+RMSE:
+0.5272030457268949
+
+[LexiconFeaturesModel__[3,15]_[10,15]_F] Fitting started, fist create features
+[LexiconFeaturesModel__[3,15]_[10,15]_F] Lets fit RF model
+[LexiconFeaturesModel__[3,15]_[10,15]_F] Feature importances:
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.16 all positive
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.16 all negative
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.15 all entities
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.08 +-15 positive
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.08 positive - negative in sentence
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.07 positive in sentence
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.06 +-15 negative
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.06 closest positive
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.05 negative in sentence
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.04 +-10 negative
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.04 closest negative
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.04 +-3 positive
+[LexiconFeaturesModel__[3,15]_[10,15]_F]     0.0 all entity occurrences
+[LexiconFeaturesModel__[3,15]_[10,15]_F] Predicting results ...
+LexiconFeaturesModel__[3,15]_[10,15]_F predicted statistics:
+Number of sentiments from 1 to 5 [   0.  143. 4492.   71.    0.]
+Measures for LexiconFeaturesModel__[3,15]_[10,15]_F:
+Confusion matrix:
+[[   0    4    7    0    0]
+ [   0   54  576    1    0]
+ [   0   62 3427   45    0]
+ [   0   23  473   24    0]
+ [   0    0    9    1    0]]
+F1 score:
+0.668981340649692
+Precision:
+0.6608977522965871
+Recall:
+0.7447938801529962
+RMSE:
+0.5298164610154548
 
 [BertModel_1_100_256_20_128_5] Loading the model ...
 [BertModel_1_100_256_20_128_5] Predicitng results ...
