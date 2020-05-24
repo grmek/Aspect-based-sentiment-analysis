@@ -9,7 +9,7 @@ All methods are evaluated on the [SentiCoref 1.0](https://www.clarin.si/reposito
 
 ## Trained models
 Training of tested models takes a lot of time.
-Trained models are available for download [here](TODO-link).
+Trained models are available for download [here](https://www.sendtransfer.com/download.php?id=f82802d706da70a694f974b9da74ae31&email=1498741).
 Copy the downloaded models in the 'data/models' directory.
 
 ## How to run it?
