@@ -9,10 +9,9 @@ All methods are evaluated on the [SentiCoref 1.0](https://www.clarin.si/reposito
 
 ## Prerequisites
 $ pip3 install -r requirements.txt  
-
 $ python3  
-import nltk  
-nltk.download('punkt')
+&gt;&gt;&gt; import nltk  
+&gt;&gt;&gt; nltk.download('punkt')
 
 ## Trained models
 Training of tested models takes a lot of time.
@@ -20,6 +19,7 @@ Trained models are available for download [here](https://www.sendtransfer.com/do
 Copy the downloaded models in the 'data/models' directory.
 
 ## How to run it?
+$ cd src  
 $ python3 main.py
 
 ## Results
