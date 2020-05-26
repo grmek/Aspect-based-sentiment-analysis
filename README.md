@@ -8,7 +8,11 @@ A entity is considered as a person, organization or a location and can be repres
 All methods are evaluated on the [SentiCoref 1.0](https://www.clarin.si/repository/xmlui/handle/11356/1285) data set.
 
 ## Prerequisites
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt  
+
+$ python3  
+import nltk  
+nltk.download('punkt')
 
 ## Trained models
 Training of tested models takes a lot of time.
